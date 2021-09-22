@@ -1,7 +1,12 @@
 package ProjetoIntegrador;
 
-public class Endereco {
+import java.io.Serializable;
+import java.util.Objects;
 
+public class Endereco implements Serializable {
+	    private  static final long serialVersionUID = 1L;
+	    
+	    
 	Integer id;
 	private String logradouro,numero,complemento,bairro,cep;
 	
@@ -62,5 +67,26 @@ public class Endereco {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(bairro, cep, complemento, id, logradouro, numero);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Endereco other = (Endereco) obj;
+		return Objects.equals(bairro, other.bairro) && Objects.equals(cep, other.cep)
+				&& Objects.equals(complemento, other.complemento) && Objects.equals(id, other.id)
+				&& Objects.equals(logradouro, other.logradouro) && Objects.equals(numero, other.numero);
+	}
+	
+	
 	
 }
